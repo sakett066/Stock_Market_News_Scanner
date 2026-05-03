@@ -1,0 +1,37 @@
+name: News Scanner
+
+on:
+  schedule:
+    # Every hour during market hours (9 AM to 4 PM IST)
+    # 9:30 AM IST
+    - cron: '0 4 * * 1-5'
+    # 10:30 AM IST
+    - cron: '0 5 * * 1-5'
+    # 11:30 AM IST
+    - cron: '0 6 * * 1-5'
+    # 12:30 PM IST
+    - cron: '0 7 * * 1-5'
+    # 1:30 PM IST
+    - cron: '0 8 * * 1-5'
+    # 2:30 PM IST
+    - cron: '0 9 * * 1-5'
+    # 3:30 PM IST
+    - cron: '0 10 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install packages
+        run: pip install nsetools requests
+      - name: Scan News
+        env:
+          TELEGRAM_NEWS_BOT_TOKEN: ${{ secrets.TELEGRAM_NEWS_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TZ: Asia/Kolkata
+        run: python news_scanner.py
