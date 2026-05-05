@@ -2,21 +2,20 @@ name: News Scanner
 
 on:
   schedule:
-    # Every hour during market hours (9 AM to 4 PM IST)
-    # 9:30 AM IST
-    - cron: '0 4 * * 1-5'
-    # 10:30 AM IST
-    - cron: '0 5 * * 1-5'
-    # 11:30 AM IST
-    - cron: '0 6 * * 1-5'
-    # 12:30 PM IST
-    - cron: '0 7 * * 1-5'
-    # 1:30 PM IST
-    - cron: '0 8 * * 1-5'
-    # 2:30 PM IST
-    - cron: '0 9 * * 1-5'
-    # 3:30 PM IST
-    - cron: '0 10 * * 1-5'
+    # 8:55 AM IST → Schedule 8 hours early (previous day 8:55 PM UTC)
+    - cron: '55 20 * * 0-4'
+    # 9:55 AM IST
+    - cron: '55 21 * * 0-4'
+    # 10:55 AM IST
+    - cron: '55 22 * * 0-4'
+    # 11:55 AM IST
+    - cron: '55 23 * * 0-4'
+    # 12:55 PM IST
+    - cron: '55 0 * * 1-5'
+    # 1:55 PM IST
+    - cron: '55 1 * * 1-5'
+    # 2:55 PM IST
+    - cron: '55 2 * * 1-5'
   workflow_dispatch:
 
 jobs:
